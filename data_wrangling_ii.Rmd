@@ -1,0 +1,27 @@
+---
+title: "Data_wrangling"
+author: "Veronica Liu"
+output: github_document
+---
+```{r setup, echo=FALSE, message=FALSE}
+
+library(tidyverse)
+```
+
+
+```{r}
+litters_df = 
+  read_csv("data/FAS_litters.csv", na = c("NA","","."))
+
+pups_df =
+  read_csv("data/FAS_pups.csv", na = c("NA","","."))
+
+pups_df = janitor::clean_names(pups_df)
+```
+
+
+
+
+
+
+This document will show how to *manipulate* data.

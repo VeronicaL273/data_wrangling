@@ -116,3 +116,64 @@ pups_df
     ##  9 #4/2/95/3-3       1 4            13        7       9
     ## 10 #2/2/95/3-2       1 4            NA        8      10
     ## # ℹ 303 more rows
+
+## Look at the read_csv option
+
+``` r
+litters_df =
+  read_csv(
+    file = "data/FAS_litters.csv",
+    skip = 2
+  )
+```
+
+    ## Rows: 47 Columns: 8
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (4): Con7, #1/2/95/2, 27, 42
+    ## dbl (4): 19, 8, 0, 7
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+What about missing data
+
+``` r
+litters_df = 
+  read_csv(
+    file = "data/FAS_litters.csv",
+    na = c("NA","",".")
+  )
+```
+
+    ## Rows: 49 Columns: 8
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (2): Group, Litter Number
+    ## dbl (6): GD0 weight, GD18 weight, GD of Birth, Pups born alive, Pups dead @ ...
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+litters_df = janitor::clean_names(litters_df)
+
+pull(litters_df, gd0_weight)
+```
+
+    ##  [1] 19.7 27.0 26.0 28.5   NA   NA   NA   NA   NA 28.5 28.0   NA   NA   NA   NA
+    ## [16] 17.0 21.4   NA   NA   NA 28.0 23.5 22.6   NA 21.7 24.4 19.5 24.3 22.6 22.2
+    ## [31] 23.8 22.6 23.8 25.5 23.9 24.5   NA   NA 26.9 27.5 28.5 33.4 21.8 25.4 20.0
+    ## [46] 21.8 25.6 23.5 25.5
+
+\##Import an excel
+
+``` r
+mlb_df = read_excel("data/mlb11.xlsx", sheet = "mlb11")
+```
+
+\##Import SAS data
+
+``` r
+pulse_df = read_sas("data/public_pulse_data.sas7bdat")
+```
